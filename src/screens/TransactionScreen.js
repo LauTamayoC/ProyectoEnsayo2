@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, TouchableOpacity, StyleSheet, Text } from 'react-native';
 
 export default function TransactionScreen() {
   const [amount, setAmount] = useState('');
@@ -7,14 +7,55 @@ export default function TransactionScreen() {
 
   return (
     <View style={styles.container}>
-      <TextInput placeholder="Monto" value={amount} onChangeText={setAmount} style={styles.input} />
-      <TextInput placeholder="Tipo (Transferencia/Depósito/Retiro)" value={type} onChangeText={setType} style={styles.input} />
-      <Button title="Enviar" onPress={() => {}} />
+      <TextInput placeholder="Monto"
+      value={amount} 
+      secureTextEntry
+      onChangeText={setAmount} 
+      style={styles.input}
+      placeholderTextColor="#b19cd9" />
+
+      <TextInput placeholder="Tipo (Transferencia/Depósito/Retiro)" 
+      value={type} 
+      secureTextEntry
+      onChangeText={setType}
+      style={styles.input}     
+      placeholderTextColor="#b19cd9" />
+
+      <TouchableOpacity style={styles.button} onPress={() => {}}>
+        <Text style = {styles.buttonText}>
+          Continuar
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', padding: 20 },
-  input: { borderWidth: 1, marginBottom: 10, padding: 8, borderRadius: 5 }
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: '#f0f0f5', // Fondo claro 
+  },
+  button: {
+    backgroundColor: '#8A05BE', // Púrpura 
+    paddingVertical: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#8A05BE', // Púrpura
+    padding: 10,
+    borderRadius: 10,
+    marginBottom: 15,
+    backgroundColor: '#fff', // Blanco
+    color: '#333', 
+  },
+  buttonText: {
+    fontSize: 16,
+    color: '#fff', // Blanco
+    fontWeight: 'bold',
+  },
 });

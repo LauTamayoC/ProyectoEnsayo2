@@ -10,9 +10,13 @@ import TransactionScreen from './src/screens/TransactionScreen';
 import LoanScreen from './src/screens/LoanScreen';
 import ReportScreen from './src/screens/ReportScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
+import TransactionHistoryScreen from './src/screens/TransactionHistory';
+import { Ionicons } from '@expo/vector-icons';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
 function AuthStack() {
   return (
@@ -25,14 +29,37 @@ function AuthStack() {
 
 function MainTabs() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Account" component={AccountScreen} />
-      <Tab.Screen name="Transaction" component={TransactionScreen} />
-      <Tab.Screen name="Loan" component={LoanScreen} />
-      <Tab.Screen name="Reports" component={ReportScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
+      <Tab.Screen name="Inicio" component={HomeScreen} />
+      <Tab.Screen name="Cuenta" component={AccountScreen} />
+      <Tab.Screen name="Transacciones" component={TransactionScreen} />
+      <Tab.Screen name="Preastamos" component={LoanScreen} />
     </Tab.Navigator>
+  );
+}
+function DrawerNavigator() {
+  return (
+    <Drawer.Navigator
+    screenOptions={{
+      drawerStyle: {
+        backgroundColor: '#8A05BE',  
+        paddingVertical: 20,
+      },
+        drawerActiveTintColor: '#fff',  
+        drawerInactiveTintColor: '#E5C9F3',  
+        drawerLabelStyle: 
+        {
+        fontSize: 16,
+        fontWeight: 'bold',
+        },
+      }}>
+      <Drawer.Screen name="Inicio" component={MainTabs} />
+      <Drawer.Screen name="Perfil" component={ProfileScreen} />
+      <Drawer.Screen name="Cuenta" component={AccountScreen} />
+      <Drawer.Screen name="Prestamos" component={LoanScreen} />
+      <Drawer.Screen name="Reportes" component={ReportScreen} />
+      <Drawer.Screen name="Transacciones" component={TransactionScreen} />
+    </Drawer.Navigator>
   );
 }
 
@@ -42,6 +69,7 @@ export default function Navigation() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Auth" component={AuthStack} />
         <Stack.Screen name="Main" component={MainTabs} />
+        <Stack.Screen name="TransactionHistory" component={TransactionHistoryScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

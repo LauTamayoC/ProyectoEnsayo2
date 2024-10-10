@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
+import { View, TextInput, Button, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function RegisterScreen({ navigation }) {
   const [name, setName] = useState('');
@@ -11,19 +11,98 @@ export default function RegisterScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text>Registro de Usuario</Text>
-      <TextInput placeholder="Nombre" value={name} onChangeText={setName} style={styles.input} />
-      <TextInput placeholder="Email" value={email} onChangeText={setEmail} style={styles.input} />
-      <TextInput placeholder="Contraseña" value={password} onChangeText={setPassword} secureTextEntry style={styles.input} />
-      <TextInput placeholder="Confirmar Contraseña" value={confirmPassword} onChangeText={setConfirmPassword} secureTextEntry style={styles.input} />
-      <TextInput placeholder="Número de Cuenta" value={accountNumber} onChangeText={setAccountNumber} style={styles.input} />
-      <TextInput placeholder="Tipo de Cuenta (Ahorros/Corriente)" value={accountType} onChangeText={setAccountType} style={styles.input} />
-      <Button title="Registrarse" onPress={() => navigation.navigate('Login')} />
+      <Text style={styles.title}>Registro de Usuario</Text>
+
+      <TextInput 
+        placeholder="Nombre" 
+        value={name} 
+        onChangeText={setName} 
+        style={styles.input} 
+        placeholderTextColor="#b3b3b3" 
+      />
+
+      <TextInput 
+        placeholder="Email" 
+        value={email} 
+        onChangeText={setEmail} 
+        style={styles.input} 
+        placeholderTextColor="#b3b3b3" 
+      />
+
+      <TextInput 
+        placeholder="Contraseña" 
+        value={password} 
+        onChangeText={setPassword} 
+        secureTextEntry 
+        style={styles.input} 
+        placeholderTextColor="#b3b3b3" 
+      />
+
+      <TextInput 
+        placeholder="Confirmar Contraseña" 
+        value={confirmPassword} 
+        onChangeText={setConfirmPassword} 
+        secureTextEntry 
+        style={styles.input} 
+        placeholderTextColor="#b3b3b3" 
+      />
+
+      <TextInput 
+        placeholder="Número de Cuenta" 
+        value={accountNumber} 
+        onChangeText={setAccountNumber} 
+        style={styles.input} 
+        placeholderTextColor="#b3b3b3" 
+      />
+
+      <TextInput 
+        placeholder="Tipo de Cuenta (Ahorros/Corriente)" 
+        value={accountType} 
+        onChangeText={setAccountType} 
+        style={styles.input} 
+        placeholderTextColor="#b3b3b3" 
+      />
+
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
+        <Text style={styles.buttonText}>Registrarse</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', padding: 20 },
-  input: { borderWidth: 1, marginBottom: 10, padding: 8, borderRadius: 5 }
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: '#f0f0f5', // Fondo claro 
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#8A05BE', // Púrpura 
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#8A05BE', // Púrpura
+    padding: 10,
+    borderRadius: 10,
+    marginBottom: 15,
+    backgroundColor: '#fff', // Blanco
+    color: '#333', 
+  },
+  button: {
+    backgroundColor: '#8A05BE', // Púrpura 
+    paddingVertical: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  buttonText: {
+    fontSize: 16,
+    color: '#fff', // Blanco
+    fontWeight: 'bold',
+  },
 });
