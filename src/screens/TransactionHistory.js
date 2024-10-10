@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const dummyTransactions = [
   { id: '1', date: '2024-10-01', type: 'Depósito', amount: 500 },
@@ -18,8 +19,9 @@ const TransactionItem = ({ item }) => (
     </Text>
   </View>
 );
-
 export default function TransactionHistoryScreen() {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Historial de Transacciones</Text>
@@ -28,9 +30,9 @@ export default function TransactionHistoryScreen() {
         renderItem={({ item }) => <TransactionItem item={item} />}
         keyExtractor={item => item.id}
       />
-      <TouchableOpacity 
-        style={[styles.button, styles.homeButton]} 
-        onPress={() => navigation.navigate('Main')}
+      <TouchableOpacity
+        style={[styles.button, styles.homeButton]}
+        onPress={() => navigation.navigate('Cuenta')}
       >
         <Text style={styles.buttonText}>Volver a tus cuentas</Text>
       </TouchableOpacity>
